@@ -1,31 +1,37 @@
-const express = require('express')
-const app = express()
-let port = process.env.PORT || 3000;
+const express = require('express');
+const app = express();
+const port = process.emitWarning.PORT || 3000;
 app.use('/assets', express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
-app.use('/', function(req, res, next){
-    console.log('Request Url:' + req.url);
+app.use('/', function (req, res, next){
+    console.log('Requeest Url:' + req.url);
     next();
-})
+});
 
-app.get('/', function(req, res){
+app.get('/api', function (req,res) {
+  res.json({
+     firstname: 'Leonel', 
+    lastname: 'Ceballos'
+  });
+});
+
+app.get('/index', function (req,res) {
   res.render('index');
-})
+}); 
 
-app.get('/person:id', function(req, res){
-  res.render('person', { ID: req.params.id });
-})
+app.get('/person/:id', function (req,res) {
+    res.render('person', {ID: req.params.id});
+}); 
 
-app.get('/', function (req, res) {
-  res.send(`<!DOCTYPE html><html lang="en"><head><link href=/assets/style.css type=text/css rel=stylesheet></head><body><h1>Hello world!</h1></body></html>`)
-})
+let data = [
+    {id : 1, nombre: 'Hugo', apellidos : 'Estrada Ramirez', edad : 19},
+    {id : 2, nombre: 'Estela', apellidos : 'Perez Suarez', edad : 18},
+    {id : 3, nombre: 'Sabrina', apellidos : 'Contreras Morales', edad : 17},
+    {id: 4, nombre: 'Aliaha', apellidos : 'Zepeda Paz', edad : 19}
+];
 
-app.get('/person/:id', function (req, res) {
-  res.send('<!DOCTYPE html><html lang="en"><head></head><body><h1>Person: ' + req.params.id +'</h1></body></html>')
-})
+app.get('/personas', function(req, res){
+    res.render('personas', {personas: data});
+});
 
-app.get('/api', function (req, res) {
-    res.json({firstname: 'Jonh', lastname: 'Doe'});
-  })
-
-app.listen(port)
+app.listen(port);

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/assets/style.css">
+</head>
+<body>
+    <table>
+        <thead>
+            <th>ID</th> 
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+        </thead>
+
+    <% for (let i = 0; i < personas.length; i++) { %>
+        <tr>
+            <td><%= personas[i].id %></td>
+            <td><%= personas[i].nombre %></td>
+            <td><%= personas[i].apellidos %></td>
+            <td><%= personas[i].edad %></td>
+        </tr>
+    <% } %>
+    </table>
+</body>
+</html>

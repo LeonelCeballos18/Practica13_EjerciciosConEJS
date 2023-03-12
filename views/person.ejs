@@ -4,6 +4,12 @@
     <link rel="stylesheet" type="text/css" href="/assets/style.css">
 </head>
 <body>
-    <h1>El numero <%= ID %> es</h1>
+
+    <h1>Hola desde el EJS</h1>
+    <h1> El número <%= ID %> es <%= ID  % 2 == 0 ? 'PAR' : 'IMPAR'%></h1>
+
+    <% for(let i = 1; i <= ID; i++) { %>
+        <li><%= i%></li>
+    <% } %>
 </body>
 </html>
